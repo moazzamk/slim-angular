@@ -8,7 +8,10 @@ return [
 
 	// Controllers
 	'Controller\PrimeNumbersController' => function ($container) {
-		return new \App\Controller\PrimeNumberController($container['Action\FindPrimeNumbersAction']);
+		return new \App\Controller\PrimeNumberController(
+			$container['Action\FindPrimeNumbersAction'],
+			$container['JsonRenderer']
+		);
 	},
 
 	// Misc. Services

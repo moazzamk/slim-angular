@@ -1,5 +1,5 @@
 <?php
 
 return [
-    '/primes@get' => 'Controller\PrimeNumbersController'
+    '/primes@get' => ['Controller\PrimeNumbersController', 'getList']
 ];
