@@ -2,14 +2,22 @@
 
 namespace App\Action;
 
+use App\Exception\BadRequestException;
+
 class FindPrimeNumbersAction
 {
     /**
-     * @param $number
+     * @param int $number
+     *
      * @return array
+     * @throws BadRequestException
      */
     public function run($number)
     {
+        if (empty($number) || !is_numeric($number)) {
+            throw new BadRequestException('Please provide a number greater than zero');
+        }
+
         $ret = [];
         for ($i = 1; $i <= $number; ++$i) {
             if ($this->isPrime($i)) {
@@ -44,5 +52,4 @@ class FindPrimeNumbersAction
 
         return true;
     }
-
 }
