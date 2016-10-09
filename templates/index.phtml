@@ -1,0 +1,76 @@
+<html>
+    <head>
+        <title>Angular QuickStart</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+        <link rel="stylesheet" href="/css/style.css"/>
+        <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" />
+
+        <script src = "/bower_components/angular/angular.min.js"></script>
+        <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <style>
+
+        </style>
+
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header"><a class="navbar-brand">Prime Number Finder</a></div>
+            </div>
+        </nav>
+        <div class="clearfix"></div>
+        <div ng-app="primey" class="content-container" role="main">
+            <div ng-controller="IndexController">
+                <form ng-submit="getPrimes()">
+                    <div class="col-sm-12 col-md-12 col-xl-12 col-xs-12 label-active">
+                        <h3>Enter maximum threshold for prime number search:</h3>
+                    </div>
+                    <div style="width:100%; position: relative ">
+                        <div class="col-md-10 col-sm-11 col-xs-10 col-xl-10">
+                            <input type="text"
+                                   ng-model="number"
+                                   name="number"
+                                   value="1000"
+                                   class="form-control"/>
+                        </div>
+                        <div class="col-sm-1 col-md-2 col-xs-2 col-xl-2">
+                            <input type="submit"
+                                   class="btn btn-primary pull-left"
+                                   value="GO" />
+                        </div>
+
+                        <div class="clearfix"></div>
+                    </div>
+                </form>
+                <div id="results" >
+                    <ul class="results-ul">
+                        <li ng-repeat="item in primeNumbers" class="label-default">
+                            {{item}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </body>
+
+
+    <script>
+        angular.module('primey', [])
+            .controller('IndexController', function ($scope, $http) {
+                $scope.number = 1000;
+
+                $scope.getPrimes = function () {
+                    $http.get('/primes?number=' + $scope.number)
+                        .then(function (response) {
+                            $scope.primeNumbers = response.data;
+                        });
+                };
+            })
+    </script>
+</html>

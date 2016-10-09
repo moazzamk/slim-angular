@@ -18,7 +18,19 @@ $container['logger'] = function ($c) {
     return $logger;
 };
 
-$servicesConfig = require __DIR__ . '/config/services.php';
+$app->getContainer()['errorHandler'] = function ($c) {
+    return function ($request, $response, $exception) use ($c) {
+        return $c['response']->withStatus($exception->getCode())
+            ->withHeader('Content-Type', 'application/json')
+            ->write(json_encode([
+                'message' => $exception->getMessage(),
+                'code' => $exception->getCode(),
+                'success' => 0,
+            ]));
+    };
+};
+
+$servicesConfig = require __DIR__ . '/../config/services.php';
 foreach ($servicesConfig as $key=>$value) {
 	$container[$key] = $value;
 }
