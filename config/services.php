@@ -13,6 +13,10 @@ return [
 			$container['JsonRenderer']
 		);
 	},
+	'Controller\HomeController' => function ($container) {
+		return new \App\Controller\HomeController($container['renderer']);
+	},
+
 
 	// Misc. Services
 	'JsonRenderer' => function () {
