@@ -1,15 +1,14 @@
 # Slim Angular Sample Application
 
-Use this skeleton application to quickly setup and start working on a new Slim Framework 3 application. This application uses the latest Slim 3 with the PHP-View template renderer. It also uses the Monolog logger.
+This application finds prime numbers for a given threshold.
 
-This skeleton application was built for Composer. This makes setting up a new Slim Framework application quick and easy.
 
 ## Install the Application
 
 Run this commands from the directory in the project's root directory
 
     php composer.phar install
-    cd public; bower
+    cd public; bower install
 
 
 * Point your virtual host document root to your new application's `public/` directory.
@@ -17,8 +16,13 @@ Run this commands from the directory in the project's root directory
 
 To run the application in development, you can also run this command. 
 
-	php composer.phar start
+	php -S localhost:8000 -t public 
 
-Run this command to run the test suite
+Run this command for PHP specs
 
 	bin/phpspec run -vvv --format=pretty spec
+	
+Run this command for JS specs
+
+    karma start
+
