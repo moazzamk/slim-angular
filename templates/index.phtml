@@ -30,7 +30,7 @@
                     <div class="col-sm-12 col-md-12 col-xl-12 col-xs-12 label-active">
                         <h3>Enter maximum threshold for prime number search:</h3>
                     </div>
-                    <div style="width:100%; position: relative ">
+                    <div>
                         <div class="col-md-10 col-sm-11 col-xs-10 col-xl-10">
                             <input type="text"
                                    ng-model="number"
@@ -59,18 +59,7 @@
         </div>
     </body>
 
-
-    <script>
-        angular.module('primey', [])
-            .controller('IndexController', function ($scope, $http) {
-                $scope.number = 1000;
-
-                $scope.getPrimes = function () {
-                    $http.get('/primes?number=' + $scope.number)
-                        .then(function (response) {
-                            $scope.primeNumbers = response.data;
-                        });
-                };
-            })
-    </script>
+    <script type="text/javascript" src="/js/src/app.js"></script>
+    <script type="text/javascript" src="/js/src/service/PrimeNumber.js"></script>
+    <script type="text/javascript" src="/js/src/controller/IndexController.js"></script>
 </html>
